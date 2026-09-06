@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wire — fast, private chat &amp; file transfer</title>
+<meta name="description" content="Start a room, share the code, and talk — text or files — in real time. No accounts, no history, nothing saved on the server." />
+<meta name="theme-color" content="#0F1B2B" />
+<meta property="og:title" content="Wire — fast, private chat &amp; file transfer" />
+<meta property="og:description" content="Start a room, share the code, and talk — text or files — in real time. No accounts, no history, nothing saved on the server." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+<!-- ===== Landing: create or join a room ===== -->
+<main id="landing" class="screen landing">
+  <div class="landing-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-name">Wire</span>
+    </div>
+    <h1>A direct line, open for as long as you need it.</h1>
+    <p class="lede">Start a room, share the code, and talk — text or files. Nothing is saved on the server; when the room empties, it's gone.</p>
+
+    <div class="card-row">
+      <div class="card">
+        <h2>Start a room</h2>
+        <p class="card-hint">Get a fresh code to share with whoever you're sending to.</p>
+        <label class="field">
+          <span>Your name</span>
+          <input id="create-name" type="text" maxlength="24" placeholder="e.g. Priya" autocomplete="off" />
+        </label>
+        <button id="create-btn" class="btn btn-primary">Create room</button>
+      </div>
+
+      <div class="divider" aria-hidden="true"><span>or</span></div>
+
+      <div class="card">
+        <h2>Join a room</h2>
+        <p class="card-hint">Enter the code someone shared with you.</p>
+        <label class="field">
+          <span>Your name</span>
+          <input id="join-name" type="text" maxlength="24" placeholder="e.g. Priya" autocomplete="off" />
+        </label>
+        <label class="field">
+          <span>Room code</span>
+          <input id="join-code" type="text" maxlength="5" placeholder="XXXXX" autocomplete="off" class="code-input" />
+        </label>
+        <button id="join-btn" class="btn btn-secondary">Join room</button>
+      </div>
+    </div>
+
+    <p id="landing-error" class="error" role="alert" hidden></p>
+
+    <ul class="promise-list">
+      <li>Messages and files relay live — nothing is written to a database</li>
+      <li>A room disappears the moment everyone leaves it</li>
+      <li>No accounts, no tracking, no history to clean up</li>
+    </ul>
+  </div>
+</main>
+
+<!-- ===== Chat room ===== -->
+<main id="room" class="screen room" hidden>
+  <header class="room-header">
+    <div class="room-id">
+      <span class="room-id-label">Room</span>
+      <button id="room-code-btn" class="room-code" title="Copy room code"></button>
+    </div>
+    <div class="room-members" id="room-members" title="People in this room"></div>
+    <span id="connection-dot" class="connection-dot connection-dot--connected" title="Connected" aria-hidden="true"></span>
+    <button id="leave-btn" class="btn btn-ghost" aria-label="Leave this room">Leave</button>
+  </header>
+
+  <div class="drop-overlay" id="drop-overlay" aria-hidden="true">
+    <div class="drop-overlay-inner">Drop to send</div>
+  </div>
+
+  <div id="connection-banner" class="connection-banner" hidden role="status"></div>
+
+  <section id="messages" class="messages" aria-live="polite"></section>
+
+  <div id="typing-indicator" class="typing-indicator" hidden aria-live="polite"></div>
+
+  <form id="composer" class="composer">
+    <input type="file" id="file-input" hidden />
+    <button type="button" id="attach-btn" class="btn btn-icon" title="Attach a file" aria-label="Attach a file">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10.5V17a4 4 0 0 1-4 4H8a5 5 0 0 1-5-5V7a4 4 0 0 1 4-4h5.5A2.5 2.5 0 0 1 15 5.5V15a1.5 1.5 0 0 1-3 0V7"/></svg>
+    </button>
+    <input id="text-input" type="text" placeholder="Write a message" autocomplete="off" maxlength="4000" aria-label="Message" />
+    <button type="submit" class="btn btn-primary btn-send">Send</button>
+  </form>
+</main>
+
+<script src="/app.js"></script>
+</body>
+</html>
