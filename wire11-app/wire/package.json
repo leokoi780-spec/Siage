@@ -1,0 +1,15 @@
+{
+  "name": "fast-private-chat",
+  "version": "2.2.0",
+  "description": "A fast, private, room-based chat app with real-time file transfer. Zero dependencies — pure Node.js. Nothing is written to disk or a database; messages and files are relayed live between people in the same room and vanish when the room empties.",
+  "main": "server.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test.js"
+  },
+  "license": "MIT",
+  "dependencies": {}
+}
